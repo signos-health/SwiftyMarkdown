@@ -118,8 +118,11 @@ extension SwiftyMarkdown {
 				let styleDescriptor = UIFontDescriptor.preferredFontDescriptor(withTextStyle: textStyle)
 				finalSize = styleDescriptor.fontAttributes[.size] as? CGFloat ?? CGFloat(14)
 			}
-			
-			if let customFont = UIFont(name: existentFontName, size: finalSize)  {
+
+			if existentFontName.hasPrefix(".SFUI") {
+				let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+				font = fontMetrics.scaledFont(for: UIFont.systemFont(ofSize: finalSize))
+			} else if let customFont = UIFont(name: existentFontName, size: finalSize)  {
 				let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
 				font = fontMetrics.scaledFont(for: customFont)
 			} else {
