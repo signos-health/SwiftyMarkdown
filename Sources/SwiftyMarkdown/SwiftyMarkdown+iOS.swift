@@ -132,6 +132,10 @@ extension SwiftyMarkdown {
 			font = UIFont.preferredFont(forTextStyle: textStyle)
 		}
 		
+		if disableDynamicType, let fontSize = fontSize {
+			font = font.withSize(fontSize)
+		}
+		
 		if globalItalic, let italicDescriptor = font.fontDescriptor.withSymbolicTraits(.traitItalic) {
 			font = UIFont(descriptor: italicDescriptor, size: fontSize ?? 0)
 		}

@@ -250,6 +250,11 @@ If that is not set, then the system default will be used.
 	
 	public var underlineLinks : Bool = false
 	
+#if !os(macOS)
+	/// Disable font scaling for dynamic type.
+	public var disableDynamicType : Bool = false
+#endif
+	
 	public var frontMatterAttributes : [String : String] {
 		get {
 			return self.lineProcessor.frontMatterAttributes
